@@ -46,8 +46,8 @@
 //SoftwareSerial SerialAT(2, 3); // RX, TX
 
 // Hologram Credentials
-String api_key = "AEJPjHEeeiXcWxfZ4znuYInwusVwS";
-String deviceid = "172804";
+String api_key = "";
+String deviceid = "";
 
 
 // Your GPRS credentials
