@@ -51,10 +51,7 @@ String deviceid = "172804";
 
 
 // Your GPRS credentials
-// Leave empty, if missing user or pass
 const char apn[]  = "hologram";
-const char user[] = "";
-const char pass[] = "";
 
 // Server details
 const char server[] = "dashboard.hologram.io";
@@ -66,25 +63,7 @@ TinyGsmClientSecure client(modem);
 HttpClient http(client, server, port);
 
 void setup() {
-  // Set console baud rate
-  SerialMon.begin(115200);
-  delay(10);
-
-  // Set GSM module baud rate
-  SerialAT.begin(115200);
-  delay(3000);
-
-  // Restart takes quite some time
-  // To skip it, call init() instead of restart()
-  SerialMon.println(F("Initializing modem..."));
-  modem.restart();
-
-  if (!modem.hasSSL()) {
-    SerialMon.println(F("SSL is not supported by this modem"));
-    while (true) {
-      delay(1000);
-    }
-  }
+  setup_modem();
 }
 
 void loop() {
@@ -101,8 +80,9 @@ void loop() {
   //Disconnect GPRS and HTTP
   disconnect_networks();
 
-  delay(60000);
+  delay(120000); // Sleep for 2 minutes
 }
+
 
 void send_message(String data, String tags) {
   SerialMon.println("Sending Message to Hologram");
@@ -128,6 +108,28 @@ void send_message(String data, String tags) {
   delay(5000);
 }
 
+void setup_modem(){
+  // Set console baud rate
+  SerialMon.begin(115200);
+  delay(10);
+
+  // Set GSM module baud rate
+  SerialAT.begin(115200);
+  delay(3000);
+
+  // Restart takes quite some time
+  // To skip it, call init() instead of restart()
+  SerialMon.println(F("Initializing modem..."));
+  modem.restart();
+
+  if (!modem.hasSSL()) {
+    SerialMon.println(F("SSL is not supported by this modem"));
+    while (true) {
+      delay(1000);
+    }
+  }
+}
+
 void connect_cellular(){
   SerialMon.print(F("Waiting for network..."));
   if (!modem.waitForNetwork()) {
@@ -139,7 +141,7 @@ void connect_cellular(){
 
   SerialMon.print(F("Connecting to "));
   SerialMon.print(apn);
-  if (!modem.gprsConnect(apn, user, pass)) {
+  if (!modem.gprsConnect(apn, "", "")) {
     SerialMon.println(" fail");
     delay(10000);
     return;
