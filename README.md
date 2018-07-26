@@ -1,10 +1,10 @@
 # hologram-tinygsm-examples
 Examples using the TinyGSM library to connect to hologram
 
-## Installation
+## hologram-cloud
 
-Install TinyGSM and ArduinoHTTPClient Arduino libraries from "Manage Libraries" in the Arduino IDE
+This folder contains examples for using TinyGSM to send messages to the Hologram Cloud via REST
 
-## post_hologram_message.ino
+## losant-mqtt
 
-This example requires an api_key and deviceID from dashboard.hologram.io
+This example will help you connect to the Losant IoT platform via MQTT to send and receive commands.
