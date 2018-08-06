@@ -5,6 +5,8 @@ This example uses TinyGSM and PubSubClient to connect to Adafruit.io to send and
 
 Install TinyGSM and PubSubClient Arduino libraries from "Manage Libraries" in the Arduino IDE
 
+It is very important you have PubSubClient version 2.6.0 or higher, otherwise the payload won't get parsed correctly.
+
 ## Adafruit IO Set Up
 
 1. Create an account at adafruit.io
