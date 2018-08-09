@@ -42,13 +42,16 @@ const char pass[] = "";
 
 // MQTT details
 const char* broker = "io.adafruit.com";
-
 #define CLIENT_ID "gsmArduino"
-#define ADAFRUIT_USERNAME ""
-#define AIO_KEY ""
+
+// visit io.adafruit.com if you need to create an account,
+// or if you need your Adafruit IO key.
+#define ADAFRUIT_USERNAME    "your_username"
+#define AIO_KEY              "your_key"
+
+// Adafruit IO Feeds
 #define SUBSCRIBE_FEED_PATH ADAFRUIT_USERNAME "/feeds/hologram.from"
 #define PUBLISH_FEED_PATH ADAFRUIT_USERNAME "/feeds/hologram.to"
-
 
 
 TinyGsm modem(SerialAT);
